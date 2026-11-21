@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hilbert's Program – Algebra: a complete university course</title>
+<meta name="description" content="A free university course in abstract algebra, lecture by lecture, with full proofs: videos, script, exercise sheets and solutions.">
+<style>
+  :root {
+    --bg: #0f1116; --panel: #161a22; --line: #262c38; --text: #e8e6e1; --dim: #9aa3ad;
+    --group: #5cc8e6; --sub: #7dd3a8; --gold: #e8b85c; --kern: #e66a6a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif; }
+  a { color: inherit; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 22px; }
+  header { padding: 72px 0 40px; border-bottom: 1px solid var(--line);
+           background: radial-gradient(900px 340px at 85% -10%, rgba(92,200,230,.14), transparent); }
+  .logo { font: 600 40px/1 Georgia, serif; letter-spacing: 2px; }
+  .logo .a { color: var(--group); } .logo .e { color: var(--gold); }
+  .kicker { color: var(--group); font-size: 13px; letter-spacing: .18em; text-transform: uppercase;
+            margin-top: 26px; }
+  h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.12; margin: 8px 0 14px; font-weight: 700; }
+  .lead { color: var(--dim); font-size: 18px; max-width: 680px; margin: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .chip { border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 14px;
+          color: var(--dim); }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 10px;
+         text-decoration: none; font-weight: 600; font-size: 15px; border: 1px solid var(--line);
+         background: var(--panel); transition: border-color .15s, transform .15s; }
+  .btn:hover { border-color: var(--group); transform: translateY(-1px); }
+  .btn.primary { background: var(--group); color: #0b1116; border-color: var(--group); }
+  section { padding: 44px 0 10px; }
+  h2 { font-size: 22px; margin: 0 0 6px; }
+  .note { color: var(--dim); margin: 0 0 22px; }
+  .ep { display: grid; grid-template-columns: 64px 1fr; gap: 18px; padding: 20px 0;
+        border-top: 1px solid var(--line); }
+  .num { font: 700 30px/1 Georgia, serif; color: var(--group); text-align: right; padding-top: 2px; }
+  .ep h3 { margin: 0; font-size: 19px; }
+  .ep p { margin: 4px 0 12px; color: var(--dim); font-size: 15px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .links a, .links span { font-size: 14px; text-decoration: none; padding: 5px 11px; border-radius: 8px;
+           border: 1px solid var(--line); background: var(--panel); }
+  .links a:hover { border-color: var(--group); }
+  .links .video { color: var(--kern); } .links .script { color: var(--gold); }
+  .links .ex { color: var(--group); } .links .sol { color: var(--sub); }
+  .links span { color: var(--dim); opacity: .7; }
+  .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .card b { display: block; margin-bottom: 4px; }
+  .card span { color: var(--dim); font-size: 14px; }
+  footer { margin: 50px 0 0; padding: 28px 0 50px; border-top: 1px solid var(--line); color: var(--dim);
+           font-size: 14px; }
+  @media (max-width: 560px) { .ep { grid-template-columns: 40px 1fr; } .num { font-size: 22px; } }
+</style>
+</head>
+<body>
+<script>
+// ------------------------------------------------------------------------------
+// EDIT HERE: after uploading a video, paste its YouTube link into "video" / "solutions".
+// ------------------------------------------------------------------------------
+const PLAYLIST = "https://www.youtube.com/playlist?list=PLBc--2zqq-U4";            // link to the YouTube playlist
+const CHANNEL  = "https://www.youtube.com/@HilbertsProgram";            // link to the YouTube channel
+const EPISODES = [
+  { n: 0,  title: "The road map", blurb: "Why there is no formula for degree five, and the route of the whole course.", video: "https://youtu.be/IbwyyYaq6c0", solutions: "" },
+  { n: 1,  title: "What is a group?", blurb: "Binary operations, the axioms, first examples and how to calculate in groups.", video: "https://youtu.be/6w5j3wUsTRQ", solutions: "https://youtu.be/pQyUPshTnDM" },
+  { n: 2,  title: "Group tables and small groups", blurb: "Latin squares, all groups with at most four elements, matrices, roots of unity, permutations.", video: "https://youtu.be/w7WUtq0W1N0", solutions: "https://youtu.be/cxJLqQq_oD8" },
+  { n: 3,  title: "Subgroups and generators", blurb: "The subgroup test, every subgroup of ℤ, generated subgroups, the symmetries of a square.", video: "https://youtu.be/MxFKmIOI8Eo", solutions: "https://youtu.be/YbPNP-GAGMg" },
+  { n: 4,  title: "Cosets and Lagrange's theorem", blurb: "Cosets cut a group into equal pieces – and why only 1 in 12 Rubik's cubes is solvable.", video: "https://youtu.be/AVoxzIJrXdg", solutions: "https://youtu.be/mBOp3YgTImQ" },
+  { n: 5,  title: "Normal subgroups and quotient groups", blurb: "When cosets can be multiplied, quotient groups, ℤ/nℤ and dihedral groups.", video: "https://youtu.be/5OS70PC46Jw", solutions: "https://youtu.be/xXCHjJUkVnQ" },
+  { n: 6,  title: "The sign of a permutation", blurb: "Inversions, the sign homomorphism, the alternating group and the 15-puzzle.", video: "https://youtu.be/HelwK1zH9-Q", solutions: "https://youtu.be/QZN4lL_NZac" },
+  { n: 7,  title: "Homomorphisms", blurb: "Structure-preserving maps, kernel and image, isomorphisms and how to tell groups apart.", video: "https://youtu.be/Givh239Oct0", solutions: "https://youtu.be/W8j65AHi5ik" },
+  { n: 8,  title: "The homomorphism theorem", blurb: "Factoring through the quotient: G/ker φ ≅ im φ, and a recipe for quotients.", video: "https://youtu.be/LMN1nbwuLnk", solutions: "https://youtu.be/4HH-ySco084" },
+  { n: 9,  title: "The isomorphism theorems", blurb: "The product theorem, quotients of quotients and the correspondence theorem.", video: "https://youtu.be/5ssUc3csYzc", solutions: "https://youtu.be/uO2Frif1sYM" },
+  { n: 10, title: "Direct products", blurb: "Pairs of groups, internal products, the Chinese remainder theorem, polar coordinates.", video: "https://youtu.be/GCFQ14evroc", solutions: "https://youtu.be/HBKz4PoE_b0" },
+  { n: 11, title: "Commutators and abelianization", blurb: "Measuring how far a group is from being abelian.", video: "https://youtu.be/uSlt6pizvdg", solutions: "https://youtu.be/ttXHbiO3pCc" },
+  { n: 12, title: "Monoids and the Grothendieck group", blurb: "Monoids, their units, and how the integers are built from pairs of natural numbers.", video: "https://youtu.be/fJkpmCORcWc", solutions: "https://youtu.be/Mw1152M0pcg" },
+  { n: 13, title: "Cyclic groups", blurb: "A clock, the roots of unity, the rotations of a polygon: all cyclic, and all the same.", video: "https://youtu.be/NxiGhEIzEfA", solutions: "https://youtu.be/MXT-DGpzMwo" },
+  { n: 14, title: "Inside cyclic groups", blurb: "What is 3¹⁰⁰ mod 7? One line of group theory answers it.", video: "https://youtu.be/m50ECTKheRc", solutions: "https://youtu.be/6G7nd7XJ5Mg" },
+  { n: 15, title: "Group actions", blurb: "Every group is a group of permutations: groups act, and Cayley's theorem follows.", video: "https://youtu.be/MEEqdaSxFL8", solutions: "https://youtu.be/38VC81Fu9GI" },
+  { n: 16, title: "Orbits and stabilizers", blurb: "How many ways to colour a cube? Count orbits with Burnside's lemma.", video: "https://youtu.be/5P10wV5010A", solutions: "https://youtu.be/H8N7v1cGoFE" },
+  { n: 17, title: "The class equation", blurb: "Why is A₅ simple? Count conjugacy classes with the class equation.", video: "https://youtu.be/ZA0yc3vwBKA", solutions: "https://youtu.be/0mFRQjocgI8" },
+  { n: 18, title: "p-groups", blurb: "Why every group of order p² is abelian, and Cauchy's theorem on elements of prime order.", video: "https://youtu.be/1KBNwh4cu9Q", solutions: "https://youtu.be/Z-B-c0b1_Ms" },
+  { n: 19, title: "Sylow I: existence", blurb: "Every finite group has subgroups of every maximal prime power order: Wielandt's proof of the first Sylow theorem.", video: "https://youtu.be/0q0i4plnQfU", solutions: "https://youtu.be/pR_yFfyyNg4" },
+  { n: 20, title: "Sylow II: conjugacy and counting", blurb: "All Sylow subgroups are conjugate and their number divides the order: why there is only one group of order 15.", video: "https://youtu.be/tf4IHzQuYaQ", solutions: "https://youtu.be/ru5rxMuSQ9M" },
+  { n: 21, title: "Solvable groups", blurb: "Groups that can be peeled into abelian layers: S4 is solvable, S5 is not – the group-theoretic root of the unsolvable quintic.", video: "https://youtu.be/P8b7sf_tmkw", solutions: "https://youtu.be/5pcHgR1xi8c" },
+  { n: 22, title: "The derived series", blurb: "Commutators of commutators: the derived series, derived length, perfect groups, and solvability read off from a single chain.", video: "https://youtu.be/fZmpOWJaByM", solutions: "" },
+];
+</script>
+
+<header>
+  <div class="wrap">
+    <div class="logo"><span class="a">∀</span><span class="e">∃</span></div>
+    <div class="kicker"><a href="./" style="text-decoration:none">Hilbert's Program</a> · Algebra</div>
+    <h1>A complete university course in algebra – free.</h1>
+    <p class="lead">Lecture by lecture, with full proofs. Every episode comes with six exercises,
+      a solution video, and a script you can read along.</p>
+    <div class="chips"><span class="chip">Groups</span><span class="chip">Rings</span>
+      <span class="chip">Modules</span><span class="chip">Fields</span><span class="chip">Galois theory</span></div>
+    <div class="actions">
+      <a class="btn primary" href="pdf/algebra-script-complete.pdf">📄 Complete script (PDF)</a>
+      <a class="btn" id="playlist" href="#episodes">▶ Watch the course</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="episodes">
+    <h2>Episodes</h2>
+    <p class="note">For every episode: the video, the matching part of the script, the exercise sheet,
+      and the solutions – as a sheet and as a video.</p>
+    <div id="list"></div>
+  </section>
+
+  <section>
+    <h2>How to learn with this course</h2>
+    <p class="note">Mathematics is learned by doing it.</p>
+    <div class="how">
+      <div class="card"><b>1 · Watch with a pen</b><span>Write along; pause at every quick check.</span></div>
+      <div class="card"><b>2 · Solve the sheet</b><span>Try all six exercises before the solutions.</span></div>
+      <div class="card"><b>3 · Compare</b><span>Solution sheet or solution video, step by step.</span></div>
+      <div class="card"><b>4 · Look things up</b><span>The script uses the same numbering as the videos.</span></div>
+    </div>
+  </section>
+
+
+  <section>
+    <h2>Prerequisites</h2>
+    <p class="note">A first course in linear algebra (vector spaces, matrices, determinants), sets and
+      maps, and proof by induction. Everything else is built from scratch.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Learn together: <a href="https://discord.gg/FUJSJWF5F">study groups on Discord</a>.<br>
+    Found a mistake or have a suggestion? Use the
+    <a href="https://hp-feedback.hilbertsprogram.workers.dev/?ep=general&amp;m=website">feedback form</a>
+    (no account needed), write a comment under the video, or send an e-mail to
+    <a href="mailto:hilbertsprogram.catering739@aleeas.com">hilbertsprogram.catering739@aleeas.com</a>.<br>
+    Narration: AI voice (Kokoro). Animation: Manim. Scripts and animations are made with substantial AI assistance.<br>
+    <b>A note of humility:</b> we are a small independent project, not a university. We check everything carefully,
+    but mistakes happen – please don't treat this material as authoritative, compare with standard sources when in
+    doubt, and tell us about any mistake you find.<br>
+    Course material: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+    website code: MIT.
+  </div>
+</footer>
+
+<script>
+  const pad = n => String(n).padStart(2, "0");
+  const list = document.getElementById("list");
+  for (const e of EPISODES) {
+    const f = `pdf/algebra-episode-${pad(e.n)}`;
+    const links = [];
+    links.push(e.video ? `<a class="video" href="${e.video}" target="_blank" rel="noopener">▶ Video</a>`
+                       : `<span>▶ Video coming</span>`);
+    links.push(`<a class="script" href="${f}-script.pdf">📄 Script</a>`);
+    if (e.n > 0) {
+      links.push(`<a class="ex" href="${f}-exercises.pdf">✎ Exercise sheet</a>`);
+      links.push(`<a class="sol" href="${f}-solutions.pdf">✓ Solutions</a>`);
+      if (e.solutions) links.push(`<a class="video" href="${e.solutions}" target="_blank" rel="noopener">▶ Solution video</a>`);
+    }
+    const div = document.createElement("div");
+    div.className = "ep";
+    div.innerHTML = `<div class="num">${e.n}</div><div><h3>${e.title}</h3><p>${e.blurb}</p>
+                     <div class="links">${links.join("")}</div></div>`;
+    list.appendChild(div);
+  }
+  if (PLAYLIST) { const p = document.getElementById("playlist"); p.href = PLAYLIST; p.target = "_blank"; }
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hilbert's Program – free courses in mathematics</title>
+<meta name="description" content="Free mathematics courses with full proofs: a complete algebra course and a graduate-level film on the Lean-verified proof of the Riemann hypothesis.">
+<style>
+  :root {
+    --bg: #0f1116; --panel: #161a22; --line: #262c38; --text: #e8e6e1; --dim: #9aa3ad;
+    --group: #5cc8e6; --sub: #7dd3a8; --gold: #e8b85c; --kern: #e66a6a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif; }
+  a { color: inherit; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 22px; }
+  header { padding: 72px 0 40px; border-bottom: 1px solid var(--line);
+           background: radial-gradient(900px 340px at 85% -10%, rgba(92,200,230,.14), transparent); }
+  .logo { font: 600 40px/1 Georgia, serif; letter-spacing: 2px; }
+  .logo .a { color: var(--group); } .logo .e { color: var(--gold); }
+  .kicker { color: var(--group); font-size: 13px; letter-spacing: .18em; text-transform: uppercase;
+            margin-top: 26px; }
+  h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.12; margin: 8px 0 14px; font-weight: 700; }
+  .lead { color: var(--dim); font-size: 18px; max-width: 680px; margin: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .chip { border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 14px;
+          color: var(--dim); }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 10px;
+         text-decoration: none; font-weight: 600; font-size: 15px; border: 1px solid var(--line);
+         background: var(--panel); transition: border-color .15s, transform .15s; }
+  .btn:hover { border-color: var(--group); transform: translateY(-1px); }
+  .btn.primary { background: var(--group); color: #0b1116; border-color: var(--group); }
+  section { padding: 44px 0 10px; }
+  h2 { font-size: 22px; margin: 0 0 6px; }
+  .note { color: var(--dim); margin: 0 0 22px; }
+  .ep { display: grid; grid-template-columns: 64px 1fr; gap: 18px; padding: 20px 0;
+        border-top: 1px solid var(--line); }
+  .num { font: 700 30px/1 Georgia, serif; color: var(--group); text-align: right; padding-top: 2px; }
+  .ep h3 { margin: 0; font-size: 19px; }
+  .ep p { margin: 4px 0 12px; color: var(--dim); font-size: 15px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .links a, .links span { font-size: 14px; text-decoration: none; padding: 5px 11px; border-radius: 8px;
+           border: 1px solid var(--line); background: var(--panel); }
+  .links a:hover { border-color: var(--group); }
+  .links .video { color: var(--kern); } .links .script { color: var(--gold); }
+  .links .ex { color: var(--group); } .links .sol { color: var(--sub); }
+  .links span { color: var(--dim); opacity: .7; }
+  .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .card b { display: block; margin-bottom: 4px; }
+  .card span { color: var(--dim); font-size: 14px; }
+  footer { margin: 50px 0 0; padding: 28px 0 50px; border-top: 1px solid var(--line); color: var(--dim);
+           font-size: 14px; }
+  @media (max-width: 560px) { .ep { grid-template-columns: 40px 1fr; } .num { font-size: 22px; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="logo"><span class="a">∀</span><span class="e">∃</span></div>
+    <div class="kicker">Hilbert's Program</div>
+    <h1>Free mathematics courses – with every proof.</h1>
+    <p class="lead">Long-form lectures with animations, scripts, exercises and full solutions. Two courses so far:
+      a complete university course in algebra, and a graduate-level film on the proof of the Riemann hypothesis.</p>
+    <div class="actions">
+      <a class="btn primary" href="https://www.youtube.com/@HilbertsProgram">▶ YouTube channel</a>
+      <a class="btn" href="links/">All links</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <h2>Courses</h2>
+    <div class="how">
+      <a class="card" href="algebra.html" style="text-decoration:none"><b>Algebra – a complete university course</b>
+        <span>Groups, rings, modules, fields and Galois theory. Every episode with script, six exercises, solution sheet and solution video.</span></a>
+      <a class="card" href="#zeta" style="text-decoration:none"><b>The Riemann Theorem – from theta lifts to zeta zeros</b>
+        <span>The first complete graduate-level course on the Lean-verified proof announced on 20 November 2026. Prologue + 64 chapters in four parts.</span></a>
+    </div>
+  </section>
+
+  <section id="scripts">
+    <h2>Scripts (PDF)</h2>
+    <div class="actions">
+      <a class="btn" href="pdf/algebra-script-complete.pdf">📄 Algebra – complete script</a>
+      <a class="btn" href="pdf/zeta-theta-lifts-to-zeta-zeros-complete.pdf">📄 The Riemann Theorem – complete script</a>
+    </div>
+  </section>
+
+  <section id="zeta">
+    <h2>The Riemann Theorem – from theta lifts to zeta zeros</h2>
+    <p class="note">A long film (prologue + 64 chapters, four parts) explaining, step by step, the argument for the
+      Riemann hypothesis that Levent Alpöge announced on 20 November 2026 together with Claude and released as a
+      Lean&nbsp;4 formalization. Status: announced; the Lean code was rebuilt and kernel-checked independently the same
+      day; formal acceptance by the mathematical community is still pending. The film follows Sahibzada
+      Allahyar's expository reconstruction and marks every statement as proved here, classical, or an input from
+      the Lean release. Each chapter ends with six exercises; the full solutions follow right after them.</p>
+    <div class="actions">
+      <a class="btn primary" href="pdf/zeta-theta-lifts-to-zeta-zeros-complete.pdf">📄 Complete script (PDF, everything in one document)</a>
+    </div>
+    <div class="actions">
+      <a class="btn" href="https://youtu.be/8lDwVyD0Lmo">▶ Part 1 – Prologue + Chapters 1–14</a>
+      <a class="btn" href="https://youtu.be/CaI-nCHt7iQ">▶ Part 2 – Chapters 15–30</a>
+    </div>
+    <p class="note">Parts 3 and 4 follow here as soon as they are online.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Learn together: <a href="https://discord.gg/FUJSJWF5F">study groups on Discord</a>.<br>
+    Found a mistake or have a suggestion? Use the
+    <a href="https://hp-feedback.hilbertsprogram.workers.dev/?ep=general&amp;m=website">feedback form</a>
+    (no account needed), write a comment under the video, or send an e-mail to
+    <a href="mailto:hilbertsprogram.catering739@aleeas.com">hilbertsprogram.catering739@aleeas.com</a>.<br>
+    Narration: AI voice (Kokoro). Animation: Manim. Scripts and animations are made with substantial AI assistance.<br>
+    <b>A note of humility:</b> we are a small independent project, not a university. We check everything carefully,
+    but mistakes happen – please don't treat this material as authoritative, compare with standard sources when in
+    doubt, and tell us about any mistake you find.<br>
+    Course material: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+    website code: MIT.
+  </div>
+</footer>
+
+</body>
+</html>
