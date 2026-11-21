@@ -62,7 +62,7 @@
     <div class="kicker"><a href="./" style="text-decoration:none">Hilbert's Program</a> · The Riemann Theorem</div>
     <h1>Cross-checks and errata</h1>
     <p class="lead">What we have checked our course against, what we found, and what we corrected.
-      Updated as checks finish and as you report mistakes. Last update: 21 November 2026.</p>
+      Updated as checks finish and as you report mistakes. Last update: 21 November 2026, 12:20.</p>
   </div>
 </header>
 <main class="wrap">
@@ -82,16 +82,33 @@
       same constants (e<sub>D</sub> = 2, e<sub>L</sub> = 0, exponent 1/2 + 9ε). The ulam text stresses that positivity is a statement
       about residues, not about the function being nonnegative – we will make this explicit in the script.
       This was a summary-level comparison, not a line-by-line check.</p>
-    <p class="note"><b>2 · Section-by-section comparison with the ulam.ai exposition:</b> in progress.</p>
-    <p class="note"><b>3 · Independent review of the delicate chapters against the manuscript</b> (theta lifts and positivity,
-      Selmer windows, final assembly and GRH): in progress.</p>
+    <p class="note"><b>2 · Section-by-section comparison with the ulam.ai exposition (21 Nov):</b> done. One real
+      difference (a complex conjugate in equation (8), where our version is the correct one), four smaller slips in our
+      script, and one step that ulam proves and we had only cited. No statement in the course was found to be overstated.
+      Details and corrections in the errata below.</p>
+    <p class="note"><b>3 · Independent review of the delicate chapters against the manuscript (21 Nov)</b> (theta lifts and
+      positivity, Selmer windows, final assembly and GRH): done. About 120 numerical examples recomputed, all correct; two
+      minor imprecisions (chapters 44 and 61), listed below. Chapters 51–59 were not part of this review.</p>
     <p class="note"><b>Status of the Lean check</b> (as reported, not re-run by us): the code was rebuilt independently on 20 Nov;
       the headline theorems depend only on the three standard axioms; some further replays were still pending at the time of
       the ulam.ai report. Formal acceptance by the mathematical community is pending.</p>
   </section>
   <section>
     <h2>Errata</h2>
-    <p class="note">No corrections published yet. Found a mistake? Use the <a href="https://hp-feedback.hilbertsprogram.workers.dev/?ep=riemann-part1&amp;m=video">feedback form</a> (no account needed),
+    <p class="note"><b>Version 1, 21 November 2026.</b> The written script is being corrected; the videos have not been changed yet. For each item we say whether the video shows the problem.</p>
+    <ul class="note">
+      <li><b>Chapter 13 (finite Fourier balance, equation (8)).</b> The script writes (8) with the complex conjugate of ξ(g), which is correct. It did not explain why the conjugate is needed, or that transcriptions without it give a different indicator when H has elements of order greater than 2. We have added a short remark on this convention. <i>Video: not affected.</i> The video uses the conjugate throughout.</li>
+      <li><b>Chapter 14 (thin places).</b> We stated the thin-place hypothesis as 3b′X′ ≤ xb. The manuscript&#x27;s hypothesis is the weaker b′X′ ≤ xb. The lemma still holds under the correct hypothesis, and its proof now uses x ≥ 3, which is exactly the lemma&#x27;s assumption. Exercise 14.4 claimed the argument works for every x ≥ 9/7. That claim depended on the stronger hypothesis, so we have rewritten the exercise and its solution: the threshold is x ≥ 3. <i>Video: affected.</i> The main video shows 3b′X′ ≤ xb, and the solutions video works Exercise 14.4 with the old hypothesis and the threshold 9/7.</li>
+      <li><b>Chapter 14 (weight Lipschitz estimate at thick places).</b> We labelled this estimate an input from the Lean release, as the manuscript does. It actually follows in a few lines from Chebyshev&#x27;s bound ψ(y) ≤ 3y. The script now proves it and labels it as proved. <i>Video: not affected</i> in the sense that nothing shown is false. The video still calls the estimate an input.</li>
+      <li><b>Chapter 15 (the constants 26 and 7).</b> A remark said we could not find the constant 7 that the manuscript mentions. It is on the next page of the manuscript: it is the final exponent e_D + e_L + 7 = C + 4, which is our A, and it equals 9 for e_D = 2, e_L = 0. We have corrected the remark. <i>Video: not affected.</i> The remark is not in the video.</li>
+      <li><b>Chapter 22 (rescaling the window).</b> The script proved only that [k₀W, (k₀W)^{3/2}] ⊆ [W, W²] exactly when W ≥ k₀³. That statement is correct, but it is not the whole step. The window theorem is applied at x/k₀, and comparing the twist cutoff and the budget across the two scales needs W ≥ k₀^400. We have added a short proved lemma for this. How the release chooses k₀ remains an input. <i>Video: not affected.</i> The video states nothing false, but it does not include the new lemma.</li>
+      <li><b>Chapter 33 (heights over number fields).</b> Over a number field we defined the height of a map as the largest logarithm of the operator norms at the embeddings. The source uses the average over the embeddings. Both versions of the slope inequality are true, and the version with the maximum is weaker. However, the heights in later formulas are the averaged ones, so our definition was not a faithful match. <i>Video: not affected.</i> The video does not state the height over number fields.</li>
+      <li><b>Chapter 44 (close to a contraction).</b> The corollary said that |U|/dim V ≤ ∏(1 − q^{−j})^{−1} for <i>every</i> irreducible V. This is true only for generic V. For non-generic V, such as the trivial representation, the eigenvalue is 0, while |U|/dim V can be large. The proof handled this case correctly; only the statement was imprecise. <i>Video: affected, minor.</i> The on-screen proof step shows the inequality without the word &quot;generic&quot;, although the chapter explains elsewhere that the eigenvalue is 0 on non-generic V.</li>
+      <li><b>Chapter 61 (table of first denominators).</b> The text called three rows &quot;tame&quot;, but Q(i) at 2 is wildly ramified (a = 2, D₂ = 1). The table has two tame rows (Q(√−3) at 3, Q(ζ₅) at 5) and two wild rows at 2 (Q(i) and Q(ζ₈)). The table entries themselves were correct. <i>Video: not affected.</i> The video shows the same numbers and does not call Q(i) tame.</li>
+      <li><b>Chapter 64 (worked end-game).</b> We wrote that the manuscript gives no value for the constant C, and we used C = 1, A = 5 for illustration. The manuscript does give the value: C = e_D + e_L + 3 = 5, so A = 9. This also matches our own Chapter 63. With these values, ε = 5·10⁻⁶ still works: the exponent becomes 0.500045 instead of 0.500025, and one minor threshold becomes log x ≥ 3.96·10⁴ instead of 9.24·10⁴. The binding threshold, log x ≥ 1.738·10⁶, and the conclusion are unchanged. <i>Video: affected.</i> The video shows and narrates C = 1, A = 5, the exponent 0.500025 and the sentence &quot;the manuscript gives no number for C&quot;.</li>
+      <li><b>Chapter 64 (status, an addition rather than a correction).</b> We have added one sentence, kept separate from the manuscript&#x27;s own checks. According to a Scientific American report, as quoted in news coverage, and to Andrew Sutherland&#x27;s report as cited in the ulam.ai exposition, on 20 November 2026 independent mathematicians, among them Sutherland (MIT), rebuilt the released Lean code. The kernel check used only the three standard axioms, some further replays were still pending, and formal acceptance by the mathematical community is still pending. <i>Video: not affected.</i> The video says that independent review is ongoing, which remains true.</li>
+    </ul>
+    <p class="note"> Found a mistake? Use the <a href="https://hp-feedback.hilbertsprogram.workers.dev/?ep=riemann-part1&amp;m=video">feedback form</a> (no account needed),
       comment under the video with a timestamp, or write to us – every confirmed correction is listed here and goes into the script.</p>
   </section>
 </main>
