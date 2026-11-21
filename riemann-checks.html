@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hilbert's Program – The Riemann Theorem: cross-checks and errata</title>
+<meta name="description" content="Free mathematics courses with full proofs: a complete algebra course and a graduate-level film on the Lean-verified proof of the Riemann hypothesis.">
+<style>
+  :root {
+    --bg: #0f1116; --panel: #161a22; --line: #262c38; --text: #e8e6e1; --dim: #9aa3ad;
+    --group: #5cc8e6; --sub: #7dd3a8; --gold: #e8b85c; --kern: #e66a6a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif; }
+  a { color: inherit; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 22px; }
+  header { padding: 72px 0 40px; border-bottom: 1px solid var(--line);
+           background: radial-gradient(900px 340px at 85% -10%, rgba(92,200,230,.14), transparent); }
+  .logo { font: 600 40px/1 Georgia, serif; letter-spacing: 2px; }
+  .logo .a { color: var(--group); } .logo .e { color: var(--gold); }
+  .kicker { color: var(--group); font-size: 13px; letter-spacing: .18em; text-transform: uppercase;
+            margin-top: 26px; }
+  h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.12; margin: 8px 0 14px; font-weight: 700; }
+  .lead { color: var(--dim); font-size: 18px; max-width: 680px; margin: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .chip { border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 14px;
+          color: var(--dim); }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 10px;
+         text-decoration: none; font-weight: 600; font-size: 15px; border: 1px solid var(--line);
+         background: var(--panel); transition: border-color .15s, transform .15s; }
+  .btn:hover { border-color: var(--group); transform: translateY(-1px); }
+  .btn.primary { background: var(--group); color: #0b1116; border-color: var(--group); }
+  section { padding: 44px 0 10px; }
+  h2 { font-size: 22px; margin: 0 0 6px; }
+  .note { color: var(--dim); margin: 0 0 22px; }
+  .ep { display: grid; grid-template-columns: 64px 1fr; gap: 18px; padding: 20px 0;
+        border-top: 1px solid var(--line); }
+  .num { font: 700 30px/1 Georgia, serif; color: var(--group); text-align: right; padding-top: 2px; }
+  .ep h3 { margin: 0; font-size: 19px; }
+  .ep p { margin: 4px 0 12px; color: var(--dim); font-size: 15px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .links a, .links span { font-size: 14px; text-decoration: none; padding: 5px 11px; border-radius: 8px;
+           border: 1px solid var(--line); background: var(--panel); }
+  .links a:hover { border-color: var(--group); }
+  .links .video { color: var(--kern); } .links .script { color: var(--gold); }
+  .links .ex { color: var(--group); } .links .sol { color: var(--sub); }
+  .links span { color: var(--dim); opacity: .7; }
+  .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .card b { display: block; margin-bottom: 4px; }
+  .card span { color: var(--dim); font-size: 14px; }
+  footer { margin: 50px 0 0; padding: 28px 0 50px; border-top: 1px solid var(--line); color: var(--dim);
+           font-size: 14px; }
+  @media (max-width: 560px) { .ep { grid-template-columns: 40px 1fr; } .num { font-size: 22px; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="kicker"><a href="./" style="text-decoration:none">Hilbert's Program</a> · The Riemann Theorem</div>
+    <h1>Cross-checks and errata</h1>
+    <p class="lead">What we have checked our course against, what we found, and what we corrected.
+      Updated as checks finish and as you report mistakes. Last update: 21 November 2026.</p>
+  </div>
+</header>
+<main class="wrap">
+  <section>
+    <h2>Sources we compare against</h2>
+    <div class="how">
+      <div class="card"><b>Allahyar's reconstruction</b><span>“From theta lifts to zeta zeros” (20 Nov 2026) – the manuscript the course follows step by step.</span></div>
+      <a class="card" href="https://www.ulam.ai/research/rh-short.pdf" style="text-decoration:none"><b>ulam.ai exposition</b><span>“Dirichlet L-Functions and the Critical Line” – an independent second write-up of the same argument.</span></a>
+      <div class="card"><b>The Lean release</b><span>Alpöge (with Claude), Lean 4, 175,187 files. Statements tagged “input from the Lean release” are taken from it, not proved in the course.</span></div>
+    </div>
+  </section>
+  <section>
+    <h2>Checks</h2>
+    <p class="note"><b>1 · First comparison with the ulam.ai exposition (21 Nov):</b> the core of the analytic part agrees –
+      same function G (ramp sum minus y log y − (1+γ)y), only an upper bound on windows [Y, Y<sup>3/2</sup>], same weights 1/(3o+1),
+      same two-case window argument (complex pole via Cauchy estimates, real pole via positive residue), same residues,
+      same constants (e<sub>D</sub> = 2, e<sub>L</sub> = 0, exponent 1/2 + 9ε). The ulam text stresses that positivity is a statement
+      about residues, not about the function being nonnegative – we will make this explicit in the script.
+      This was a summary-level comparison, not a line-by-line check.</p>
+    <p class="note"><b>2 · Section-by-section comparison with the ulam.ai exposition:</b> in progress.</p>
+    <p class="note"><b>3 · Independent review of the delicate chapters against the manuscript</b> (theta lifts and positivity,
+      Selmer windows, final assembly and GRH): in progress.</p>
+    <p class="note"><b>Status of the Lean check</b> (as reported, not re-run by us): the code was rebuilt independently on 20 Nov;
+      the headline theorems depend only on the three standard axioms; some further replays were still pending at the time of
+      the ulam.ai report. Formal acceptance by the mathematical community is pending.</p>
+  </section>
+  <section>
+    <h2>Errata</h2>
+    <p class="note">No corrections published yet. Found a mistake? Comment under the video with a timestamp, use the feedback
+      form, or write to us – every confirmed correction is listed here and goes into the script.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Learn together: <a href="https://discord.gg/9SDmqu637a">study groups on Discord</a>.<br>
+    Found a mistake or have a suggestion? Use the
+    <a href="https://hp-feedback.hilbertsprogram.workers.dev/?ep=general&amp;m=website">feedback form</a>
+    (no account needed), write a comment under the video, or send an e-mail to
+    <a href="mailto:hilbertsprogram.catering739@aleeas.com">hilbertsprogram.catering739@aleeas.com</a>.<br>
+    Narration: AI voice (Kokoro). Animation: Manim. Scripts and animations are made with substantial AI assistance.<br>
+    <b>A note of humility:</b> we are a small independent project, not a university. We check everything carefully,
+    but mistakes happen – please don't treat this material as authoritative, compare with standard sources when in
+    doubt, and tell us about any mistake you find.<br>
+    Course material: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> ·
+    website code: MIT.
+  </div>
+</footer>
+
+</body>
+</html>
